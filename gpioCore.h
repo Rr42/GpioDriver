@@ -26,8 +26,8 @@
 #include <linux/gpio.h>
 // #include "/usr/include/wiringPi.h"
 
-/* Pin number for indicator LED */
-#define INDICATOR_LED 21
+/* GPIO number for indicator LED */
+#define INDICATOR_LED 5
 
 /* Possible GPIO pin states */
 #define LOW 0

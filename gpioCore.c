@@ -32,6 +32,8 @@ int gpioInit(void)
         return ret;
     
     ret = gpio_direction_output(INDICATOR_LED, LOW);
+    ret -= gpio_export(INDICATOR_LED, false);
+
     return ret;
 }
 
@@ -49,6 +51,7 @@ int gpioSetSignalH(void)
 
 int gpioExit(void)
 {
+    gpio_unexport(INDICATOR_LED);
     gpio_free(INDICATOR_LED);
 
     return 0;

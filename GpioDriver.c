@@ -45,7 +45,7 @@
 /* Data structure for virtual device */
 struct fake_device 
 {
-    char command[1];
+    char command[2];
     char result[5];
 
     /* Privent data corruption */
@@ -88,11 +88,14 @@ int gpiodriver_open(struct inode *inode, struct file *filp)
 /* Device read function */
 ssize_t gpiodriver_read(struct file *filp, char *bufStoreData, size_t bufCount, loff_t *curoffset)
 {
+    char data[20];
     /* Take data from kernel space (device) to user space (process) */
     printk(KERN_INFO "GpioDriver: Reading from device\n");
 
+    sprintf(data, "{ C:%s, R:%s }", virtual_device.command, virtual_device.result);
+
     /* (<destination>, <source>, <sizeToTransfer>) */
-    ret = copy_to_user(bufStoreData, virtual_device.command, bufCount);
+    ret = copy_to_user(bufStoreData, data, bufCount);
     return ret;
 }
 
@@ -107,13 +110,11 @@ ssize_t gpiodriver_write(struct file *filp, const char *bufStoreData, size_t buf
 
     switch(virtual_device.command[0])
     {
-        case '0': 
-
-            strcpy(virtual_device.result, (const char*)&ECODE_OK);
+        case '0':
+            strcpy(virtual_device.result, ( (gpioSetSignalL() >= 0)?(const char*)&ECODE_OK:(const char*)&ECODE_FAIL ) );
         break;
         case '1':
-
-            strcpy(virtual_device.result, (const char*)&ECODE_OK);
+            strcpy(virtual_device.result, ( (gpioSetSignalH() >= 0)?(const char*)&ECODE_OK:(const char*)&ECODE_FAIL ));
         break;
         default:
             strcpy(virtual_device.result, (const char*)&ECODE_FAIL);
@@ -180,6 +181,13 @@ static int gpiodriver_init(void)
     /* Init the semaphore with initial value of 1 */
     sema_init(&virtual_device.sem, 1);
 
+    ret = gpioInit();
+    if (ret < 0)
+    {
+        printk(KERN_ALERT "GpioDriver: failed to allocate IO pin\n");
+        return ret;
+    }
+
     printk(KERN_INFO "GpioDriver: Module loaded\n");
     return 0;
 }
@@ -187,6 +195,8 @@ static int gpiodriver_init(void)
 /* Exit function */
 static void gpiodriver_exit(void)
 {
+    gpioExit();
+    
     /* unregister everything in reverse order */
     cdev_del(mcdev);
 

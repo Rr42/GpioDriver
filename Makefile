@@ -30,7 +30,18 @@ PWD  := $(shell pwd)
 
 MAJOR_NUM := $(shell cat /proc/devices | grep GpioDriver | grep -oEi "([0-9]+)")
 
-all:
+SUBDIRS := $(wildcard */)
+
+TOPTARGETS := all clean
+
+all: $(SUBDIRS) GpioDriverMod.ko
+
+$(TOPTARGETS): $(SUBDIRS)
+
+$(SUBDIRS):
+	$(MAKE) -C $@ $(MAKECMDGOALS)
+
+GpioDriverMod.ko:
 	$(MAKE) -C $(KERNEL_DIR) SUBDIRS=$(PWD) modules
 
 load:
@@ -53,3 +64,5 @@ uninstall:
 
 clean:
 	rm -rf *.o *.ko *.mod *.symvers *.order .*.cmd *.mod.c .tmp_versions .cache.mk
+
+.PHONY: $(TOPTARGETS) $(SUBDIRS)

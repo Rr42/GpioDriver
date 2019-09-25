@@ -28,9 +28,9 @@ CFLAGS = -Wall -I$(IDIR)
 OBJ = UappGPIO.o
 DEPS = UappGPIO.h
 
-all: UappGPIO.run
+UserApp/: UappGPIO.run
 
-UappGPIO.run: UappGPIO.o
+UappGPIO.run: $(OBJ)
 	gcc -I$(IDIR) -o $@ $^
 
 %.o: %.c $(DEPS)

@@ -1,10 +1,10 @@
 /*
-* File name: gpioCore.h
+* File name: UappGPIO.h
 * Code author: Ramana R (github@Rr42)
 * Code version: v1.0
-* Application: GPIO test driver module
+* Application: GPIO test driver user application
 * Description: 
-* 	This code provides declarations for the core GPIO functionality required by the GPIO test driver module.
+*   This is a sample code to demonstrate a linux character driver user application for Raspberry Pi 3B.
 * License:
 *   Copyright (C) 2019  Ramana R (github@Rr42)
 *   
@@ -22,19 +22,10 @@
 *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-/* Includes */
-#include <linux/gpio.h>
-// #include "/usr/include/wiringPi.h"
+#include "UappGPIO.h"
 
-/* Pin number for indicator LED */
-#define INDICATOR_LED 21
-
-/* Possible GPIO pin states */
-#define LOW 0
-#define HIGH 1
-
-/* Functions */
-int gpioInit(void);
-int gpioSetSignalL(void);
-int gpioSetSignalH(void);
-int gpioExit(void);
+int main(void)
+{
+    printf("Hello\n");
+    return 0;
+}

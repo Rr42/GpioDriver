@@ -2,9 +2,9 @@
 * File name: GpioDriver.c
 * Code author: Ramana R (github@Rr42)
 * Code version: v1.0
-* Application: GPIO test driver
+* Application: GPIO test driver module
 * Description:
-*   Sample code to demonstrate a linux character driver for Raspberry Pi 3B.
+*   This is a sample code to demonstrate a linux character driver for Raspberry Pi 3B.
 * Note: 
 *   Kernel space stack is small so DO NOT make too many varibles inside functions 
 *   it can cause the driver to crash, this is not a problem in user space since user 

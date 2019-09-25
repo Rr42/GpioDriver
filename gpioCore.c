@@ -2,9 +2,9 @@
 * File name: gpioCore.h
 * Code author: Ramana R (github@Rr42)
 * Code version: v1.0
-* Application: GPIO test driver
+* Application: GPIO test driver module
 * Description: 
-*   This code provides definitions for the core GPIO functionality required by the GPIO test driver.
+*   This code provides definitions for the core GPIO functionality required by the GPIO test driver module.
 * License:
 *   Copyright (C) 2019  Ramana R (github@Rr42)
 *   

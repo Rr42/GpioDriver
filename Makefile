@@ -3,7 +3,7 @@
 # gcc -Wall -o GpioDriver.o GpioDriver.c -L$(WIRDIR)/wiringPi
 
 obj-m     += GpioDriverMod.o
-GpioDriverMod-y := GpioDriver.o gpio.o
+GpioDriverMod-y := GpioDriver.o gpioCore.o
 
 KERNEL_DIR := /lib/modules/$(shell uname -r)/build
 PWD  := $(shell pwd)

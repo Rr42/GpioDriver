@@ -8,5 +8,6 @@
 *.mod.c 
 .tmp_versions
 .cache.mk
+*.code-workspace
 
 UserApp/*.o

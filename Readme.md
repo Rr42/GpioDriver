@@ -68,3 +68,8 @@ To unload the driver and remove the driver file automatically run the following 
 ```
 make uninstall
 ````
+
+# Installing the Kernel Headers
+In order to compile and work with drivers it is required to ensure that the Kernel headers are installed. This can be done by following the steps in the guide provided in the below link.
+
+https://www.tecmint.com/install-kernel-headers-in-ubuntu-and-debian/

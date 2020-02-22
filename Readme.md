@@ -60,13 +60,13 @@ sudo sh gpiodriverRun.sh
 ## Intalling the driver
 To load the driver and generate the driver file automatically run the following command in the build directory.
 ```
-make install
+sudo make install
 ````
 
 ## Unintalling the driver
 To unload the driver and remove the driver file automatically run the following command in the build directory.
 ```
-make uninstall
+sudo make uninstall
 ````
 
 # Installing the Kernel Headers

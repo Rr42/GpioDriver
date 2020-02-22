@@ -4,9 +4,11 @@
 *.mod 
 *.symvers 
 *.order 
-.*.cmd 
+*.cmd 
 *.mod.c 
 .tmp_versions
 .cache.mk
+*.code-workspace
 
 UserApp/*.o
+UserApp/*.run
